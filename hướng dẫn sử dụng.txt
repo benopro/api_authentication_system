@@ -1,0 +1,87 @@
+có thể thay đổi a📚 HƯỚNG DẪN SỬ DỤNG API AUTHENTICATION SYSTEM
+1. Yêu cầu hệ thống
+- Python 3.8 trở lên
+- Windows/Linux/MacOS
+- RAM: 4GB trở lên
+- Ổ cứng trống: 1GB
+2. Cài đặt môi trường
+# 1. Tạo môi trường ảo
+python -m venv venv
+
+# 2. Kích hoạt môi trường
+venv\Scripts\activate
+
+# 3. Cài đặt thư viện
+pip install -r requirements.txt
+
+
+4.  Chạy hệ thống
+# Chạy server
+python run.py
+
+# Server sẽ chạy tại: http://127.0.0.1:5000/
+5. API Endpoints
+5.1 Đăng ký tài khoản
+http://127.0.0.1:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "your_username",
+    "email": "your@email.com",
+    "password": "your_password"
+}
+5.2 Đăng nhập
+
+POST http://127.0.0.1:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "your_username",
+    "password": "your_password"
+}
+5.3 Truy cập Protected Routes
+
+5.3.1 Lấy lịch sử code
+GET http://localhost:5000/api/history
+Headers:
+Authorization: Bearer your_token_here
+
+Response success (200):
+{
+    "sessions": [
+        {
+            "id": 1,
+            "query": "your query",
+            "response": "assistant response",
+            "language": "python",
+            "created_at": "2024-01-15T20:23:21.123456",
+            "tokens_used": 150
+        }
+        // ...
+    ]
+}
+
+5.3.2 Sử dụng Code Assistant
+POST http://localhost:5000/api/code-assist
+Headers:
+Authorization: Bearer your_token_here
+
+Request body:
+{
+    "query": "How to sort a list in Python?",
+    "code_context": "my_list = [3, 1, 4, 1, 5, 9]",
+    "language": "python"
+}
+
+Response success (200):
+{
+    "success": true,
+    "response": "Detailed explanation and code solution...",
+    "tokens_used": 150
+}
+© 2024 All Rights Reserved
+Nghiêm cấm sao chép dưới mọi hình thức
+---
+Made with ❤️ by Daitrinh
+Bạn cần thêm thông tin gì vào hướng dẫn không?
+
